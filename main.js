@@ -45,3 +45,26 @@ getUsersFromAPI()
     });
 
 
+
+
+    async function fetchDataFromFastestAPI() {
+        const url1 = 'https://dummyjson.com/users';
+        const url2 = 'https://jsonplaceholder.typicode.com/users';
+      
+        const promise1 = fetch(url1).then(response => response.json());
+        const promise2 = fetch(url2).then(response => response.json());
+      
+        try {
+          const result = await Promise.race([promise1, promise2]);
+      
+          console.log( result);
+          return result;
+        } catch (error) {
+          console.error('Error:', error.message);
+          return null;
+        }
+      }
+      
+
+      fetchDataFromFastestAPI();
+
